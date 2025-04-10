@@ -1,0 +1,88 @@
+body {
+  font-family: monospace;
+}
+#title {
+  font-size: 3rem;
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+#container-wrapper {
+  background-color: rgba(0, 0, 0, 0.897);
+  color: white;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5rem;
+}
+#display {
+  background-color: gray;
+  font-size: 3rem;
+  width: 62%;
+  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.5rem;
+  padding-right: 1rem;
+}
+#buttons-wrapper {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#row-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 0.5rem;
+}
+#row-1 button {
+  font-size: 4rem;
+  font-family: monospace;
+  width: 20%;
+  background-color: orange;
+  border-radius: 2rem;
+}
+#row-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 0.5rem;
+}
+#row-2 button {
+  font-size: 4rem;
+  font-family: monospace;
+  width: 20%;
+  background-color: orange;
+  border-radius: 2rem;
+}
+#row-3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 0.5rem;
+}
+#row-3 button {
+  font-size: 4rem;
+  font-family: monospace;
+  width: 20%;
+  background-color: orange;
+  border-radius: 2rem;
+}
+#row-4 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 0.5rem;
+  padding-bottom: 1.5rem;
+}
+#row-4 button {
+  font-size: 4rem;
+  font-family: monospace;
+  width: 27%;
+  background-color: orange;
+  border-radius: 2rem;
+}
