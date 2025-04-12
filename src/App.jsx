@@ -6,52 +6,53 @@ function App() {
   const [prevDisplay, setPrevDisplay] = useState("");
 
   const pressNum = (number) => {
-    console.log(number);
-    if (display == "0") {
+    if (display == 0 && number == 0) {
       setDisplay(number);
+      setPrevDisplay(0);
       return;
     }
-    if (prevDisplay.toString().search("=") != -1) {
-      setPrevDisplay("");
+    if (display == 0 && display.toString().includes(".") == false) {
       setDisplay(number);
+      setPrevDisplay(number);
       return;
     }
-    if (
-      display == "+" ||
-      display == "*" ||
-      display == "/" ||
-      (display == "-" && number != 0)
-    ) {
+    if (display == "+" || display == "-" || display == "*" || display == "/") {
       setDisplay(number);
+      setPrevDisplay((prev) => prev.toString() + number);
       return;
     }
+    if (prevDisplay.toString().includes(".")) {
+      setDisplay((prev) => prev.toString() + number.toString());
+      setPrevDisplay((prev) => prev.toString() + number.toString());
+      return;
+    }
+
     setDisplay((prev) => prev.toString() + number.toString());
+    setPrevDisplay(display.toString() + number.toString());
   };
 
   const pressOperation = (operator) => {
-    console.log(operator);
-    if (prevDisplay.toString().search("=") != -1) {
-      setPrevDisplay(display.toString() + operator);
-      setDisplay(operator);
+    if (prevDisplay.toString().includes("=")) {
+      setPrevDisplay(display);
+    }
+    setDisplay(operator);
+    setPrevDisplay((prev) => prev.toString() + operator);
+  };
+  const pressDecimal = () => {
+    if (display.toString().includes(".")) {
       return;
     }
-    setPrevDisplay((prev) => prev + display.toString() + operator);
-    setDisplay(operator);
+    setDisplay((prev) => prev.toString() + ".");
+    setPrevDisplay((prev) => prev.toString() + ".");
   };
-
   const clear = () => {
     setDisplay(0);
     setPrevDisplay("");
   };
   const pressEval = () => {
-    console.log("=");
-    setDisplay((prev) => eval(prevDisplay.toString() + prev.toString()));
+    setDisplay(parseFloat(eval(prevDisplay.toString())));
     setPrevDisplay(
-      (prev) =>
-        prev.toString() +
-        display.toString() +
-        "=" +
-        eval(prev.toString() + display.toString())
+      (prev) => prev.toString() + "=" + parseFloat(eval(prev.toString()))
     );
   };
   return (
