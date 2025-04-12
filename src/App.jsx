@@ -6,6 +6,11 @@ function App() {
   const [prevDisplay, setPrevDisplay] = useState("");
 
   const pressNum = (number) => {
+    if (prevDisplay.toString().includes("=")) {
+      setPrevDisplay(number);
+      setDisplay(number);
+      return;
+    }
     if (display == 0 && number == 0) {
       setDisplay(number);
       setPrevDisplay(0);
@@ -32,9 +37,29 @@ function App() {
   };
 
   const pressOperation = (operator) => {
+    const lastInput = prevDisplay.toString().slice(-1);
+    console.log(lastInput);
+
     if (prevDisplay.toString().includes("=")) {
       setPrevDisplay(display);
     }
+    if (prevDisplay == "") {
+      return;
+    }
+    if (
+      lastInput == "+" ||
+      lastInput == "-" ||
+      lastInput == "*" ||
+      lastInput == "/"
+    ) {
+      setDisplay(operator);
+      setPrevDisplay((prev) => {
+        let cleaned = prev.substring(0, prev.length - 1);
+        return cleaned + operator;
+      });
+      return;
+    }
+
     setDisplay(operator);
     setPrevDisplay((prev) => prev.toString() + operator);
   };
