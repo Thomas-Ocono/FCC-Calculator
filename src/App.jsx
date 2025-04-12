@@ -38,12 +38,31 @@ function App() {
 
   const pressOperation = (operator) => {
     const lastInput = prevDisplay.toString().slice(-1);
-    console.log(lastInput);
+    const last2Inputs = prevDisplay.toString().slice(-2);
+    console.log(last2Inputs);
 
     if (prevDisplay.toString().includes("=")) {
       setPrevDisplay(display);
     }
     if (prevDisplay == "") {
+      return;
+    }
+    if (last2Inputs == "+-" || last2Inputs == "*-" || last2Inputs == "/-") {
+      setDisplay(operator);
+      setPrevDisplay((prev) => {
+        let cleaned = prev.substring(0, prev.length - 2);
+        return cleaned + operator;
+      });
+      return;
+    }
+
+    if (
+      (lastInput == "*" && operator == "-") ||
+      (lastInput == "/" && operator == "-") ||
+      (lastInput == "+" && operator == "-")
+    ) {
+      setDisplay(operator);
+      setPrevDisplay((prev) => prev.toString() + operator);
       return;
     }
     if (
